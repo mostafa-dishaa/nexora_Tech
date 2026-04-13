@@ -1,0 +1,246 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial;
+    background-image: url(../photo/OFX3-iStock-492595743-1200x800.webp) ;
+    background-size: cover;
+    text-align: center;
+}
+
+.title {
+    margin: 20px 0;
+    font-size: 32px;
+    color: #ffffff;
+}
+
+/* الفورم */
+form {
+    max-width: 650px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* inputs */
+input {
+    display: block;
+    width: 100%;
+    margin: 10px -10px;
+    padding: 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 8px rgba(59,130,246,0.3);
+}
+
+/* خيارات الدفع */
+.payment-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8fafc;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.payment-option:hover {
+    background: #eef2ff;
+}
+
+/* نخفي radio الأصلي */
+.payment-option input {
+    display: none;
+}
+
+/* مربع بدل الدايرة */
+.custom-radio {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #3b82f6;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* لما يتختار */
+.payment-option input:checked + .custom-radio {
+    background: #3b82f6;
+}
+
+/* محتوى الاختيار */
+.option-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    margin-left: 10px;
+}
+
+.option-content img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.option-content i {
+    font-size: 22px;
+}
+
+/* boxes */
+.method-box {
+    display: none;
+    margin: 10px 0;
+}
+
+/* زرار */
+button {
+    background: #10b981;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #059669;
+}
+
+/* رسالة النجاح */
+#successMsg {
+    display: none;
+    margin-top: 20px;
+    font-size: 20px;
+    color: green;
+}
+
+/* يمنع مشاكل iPhone في zoom */
+input,
+button {
+    font-size: 16px;
+}
+
+/* 📱 Tablets */
+@media (max-width: 768px) {
+
+    body {
+        padding: 10px;
+        background-position: center;
+    }
+
+    form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 26px;
+    }
+
+    .option-content img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .option-content i {
+        font-size: 20px;
+    }
+}
+
+/* 📱 Mobile (Android + iPhone) */
+@media (max-width: 480px) {
+
+    body {
+        padding: 10px;
+    }
+
+    form {
+        width: 95%;
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .title {
+        font-size: 22px;
+        margin: 15px 0;
+    }
+
+    input {
+        padding: 10px;
+        margin: 8px 0;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    /* أهم جزء 👇 */
+    .payment-option {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .option-content {
+        gap: 8px;
+    }
+
+    .option-content img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .option-content i {
+        font-size: 18px;
+    }
+
+    .custom-radio {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* 🍎 iPhone (small screens زي 6/7/8/SE) */
+@media (max-width: 375px) {
+
+    .title {
+        font-size: 20px;
+    }
+
+    form {
+        padding: 12px;
+    }
+
+    input {
+        font-size: 14px;
+        padding: 9px;
+    }
+
+    .option-content span {
+        font-size: 13px;
+    }
+}
+
+/* 🍎 iPhone Plus / Pro Max */
+@media (max-width: 430px) {
+
+    form {
+        width: 95%;
+    }
+}

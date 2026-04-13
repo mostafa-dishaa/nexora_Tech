@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+    <link rel="stylesheet" href="css/checkout.css">
+    <script src="js/checkout.js" defer></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <h1 class="title">Payment Page</h1>
+    <form id="paymentForm">
+        <input type="text" id="name" placeholder="الاسم" required>
+        <input type="text" id="phone" placeholder="رقم الهاتف" required>
+        <input type="text" id="address" placeholder="العنوان" required>
+        <h3>اختار طريقة الدفع</h3>
+        <!-- Vodafone -->
+        <label class="payment-option">
+            <input type="radio" name="payment" value="vodafone" onclick="showMethod('vodafone')">
+            <span class="custom-radio"></span>
+            <div class="option-content">
+                <img src="./photo/images.png">
+                <span>فودافون كاش</span>
+            </div>
+        </label>
+        <div id="vodafoneBox" class="method-box">
+            <input type="text" placeholder="رقم المحفظة">
+            <input type="password" placeholder="كلمة المرور">
+        </div>
+        <!-- Visa -->
+        <label class="payment-option">
+            <input type="radio" name="payment" value="visa" onclick="showMethod('visa')">
+            <span class="custom-radio"></span>
+            <div class="option-content">
+                <img src="./photo/1c58492c218f6.jpg">
+                <span>فيزا</span>
+            </div>
+        </label>
+        <div id="visaBox" class="method-box">
+            <input type="text" placeholder="رقم الكارت">
+            <input type="password" placeholder="كلمة المرور">
+        </div>
+        <!-- COD -->
+        <label class="payment-option">
+            <input type="radio" name="payment" value="cod" onclick="showMethod('cod')">
+            <span class="custom-radio"></span>
+            <div class="option-content">
+                <i class="fa-solid fa-hand"></i>
+                <span>الدفع عند الاستلام</span>
+            </div>
+        </label>
+        <div id="codBox" class="method-box">
+            <p>لن تحتاج إدخال بيانات إضافية</p>
+        </div>
+        <button type="submit">تأكيد الطلب</button>
+    </form>
+    
+    <div id="successMsg">✔ تم تأكيد الأوردر بنجاح</div>
+</body>
+</html>

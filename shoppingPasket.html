@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Basket</title>
+
+    <link rel="stylesheet" href="css/shoppingPasket.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/shoppingpasket.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Shopping Basket</h1>
+    </header>
+
+    <div class="cart-container" id="cartContainer"></div>
+
+    <!-- Template -->
+    <template id="cartTemplate">
+        <div class="cart-item">
+            <img class="cart-image">
+
+            <div class="cart-details">
+                <span class="cart-title"></span>
+                <span class="cart-price"></span>
+            </div>
+
+            <div class="quantity-controls">
+                <button class="decrease">-</button>
+                <span class="quantity">1</span>
+                <button class="increase">+</button>
+                <button class="delete">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+            <button class="confirm-btn">Confirm Purchase</button>
+        </div>
+    </template>
+
+    <button class="back-btn" onclick="window.location.href='index.html'">
+        <i class="fa-solid fa-arrow-left"></i> العودة للتسوق
+    </button>
+
+    <script src="shoppingPasket.js"></script>
+
+</body>
+
+</html>

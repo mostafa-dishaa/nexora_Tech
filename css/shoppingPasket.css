@@ -1,0 +1,206 @@
+/* تحسين عام */
+* {
+    box-sizing: border-box;
+}
+
+/* العنوان */
+header h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 25px;
+    color: #000000;
+}
+
+/* الكونتينر */
+.cart-container {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* المنتج */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cart-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-details {
+    flex: 1;
+    min-width: 200px;
+}
+
+.cart-title {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.cart-price {
+    display: block;
+    font-size: 16px;
+    color: #555;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quantity-controls button {
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    cursor: pointer;
+}
+
+.quantity-controls .delete {
+    background: red;
+}
+
+.confirm-btn {
+    padding: 8px 16px;
+    background: #10b981;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.total {
+    text-align: right;
+    margin-top: 25px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.empty-cart {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 18px;
+    color: #555;
+}
+
+.back-btn {
+    display: block;
+    margin: 30px auto;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+/* ===================== */
+/* 📱 Tablet */
+@media (max-width: 768px) {
+
+    .cart-container {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .cart-image {
+        width: 70px;
+        height: 70px;
+    }
+
+    .cart-title {
+        font-size: 16px;
+    }
+
+    .cart-price {
+        font-size: 14px;
+    }
+}
+
+
+/* ===================== */
+/* 📱 Mobile */
+@media (max-width: 480px) {
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    .cart-container {
+        padding: 15px;
+    }
+
+    /* أهم تعديل */
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .cart-details {
+        width: 100%;
+    }
+
+    .quantity-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .confirm-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .total {
+        text-align: center;
+        font-size: 18px;
+    }
+}
+
+
+/* ===================== */
+/* 🍎 iPhone صغير */
+@media (max-width: 375px) {
+
+    .cart-image {
+        width: 55px;
+        height: 55px;
+    }
+
+    .cart-title {
+        font-size: 15px;
+    }
+
+    .cart-price {
+        font-size: 13px;
+    }
+
+    .quantity-controls button {
+        padding: 3px 8px;
+        font-size: 14px;
+    }
+}
