@@ -124,8 +124,8 @@ button:hover {
 #successMsg {
     display: none;
     margin-top: 20px;
-    font-size: 20px;
-    color: green;
+    font-size: 35px;
+    color: rgb(0, 255, 0);
 }
 
 /* يمنع مشاكل iPhone في zoom */
