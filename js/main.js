@@ -43,16 +43,68 @@ topBtn.addEventListener("click", () => {
 // =======================
 // Select2
 // =======================
-document.addEventListener("DOMContentLoaded", function () {
-  if (typeof $ === "undefined" || !$.fn.select2) return;
+$(document).ready(function () {
 
-  const country = document.getElementById("country");
+  $.ajax({
+    url: "https://countriesnow.space/api/v0.1/countries/flag/images",
+    type: "GET",
+    success: function (res) {
 
-  if (country) {
-    $('#country').select2({
-      placeholder: "Search country...",
-      allowClear: true,
-      width: '100%'
-    });
-  }
+      const data = res.data;
+
+      data.sort((a, b) => a.name.localeCompare(b.name));
+
+      data.forEach(country => {
+
+        $('#country').append(`
+          <option value="${country.iso2}" data-flag="${country.flag}">
+            ${country.name}
+          </option>
+        `);
+
+      });
+
+      // مهم جدًا بعد إضافة البيانات
+      $('#country').select2({
+        placeholder: "Search country...",
+        allowClear: true,
+        width: '100%',
+
+        templateResult: function (data) {
+          if (!data.id) return data.text;
+
+          const flag = $(data.element).data('flag');
+
+          if (!flag) return data.text;
+
+          return $(`
+            <span>
+              <img src="${flag}" style="width:20px;height:14px;margin-right:8px;vertical-align:middle;">
+              ${data.text}
+            </span>
+          `);
+        },
+
+        templateSelection: function (data) {
+          const flag = $(data.element).data('flag');
+
+          if (!flag) return data.text;
+
+          return $(`
+            <span>
+              <img src="${flag}" style="width:20px;height:14px;margin-right:8px;vertical-align:middle;">
+              ${data.text}
+            </span>
+          `);
+        }
+
+      });
+
+    },
+    error: function () {
+      console.log("Failed to load countries");
+    }
+
+  });
+
 });

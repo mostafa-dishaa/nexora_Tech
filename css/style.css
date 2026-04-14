@@ -422,43 +422,70 @@ body.dark-mode .contact button:hover {
   background-color: #1d4ed8;
 }
 
+
+
 /* =========================
-  SELECT2
+   SELECT2 MAIN BOX
 ========================= */
 .select2-container--default .select2-selection--single {
   height: 38px;
-  padding: 6px 8px;
+  padding: 6px 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
   display: flex;
   align-items: center;
-  font-size: 14px;
 }
 
-/* Flag + Text */
-.select2-container .select2-selection__rendered {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+/* =========================
+   SELECTED VALUE (TOP BOX)
+========================= */
+.select2-container--default .select2-selection__rendered {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px;
+  line-height: normal;
 }
 
-.select2-container .select2-selection__rendered img {
+/* flag in selected box */
+.select2-container--default .select2-selection__rendered img {
+  width: 20px;
+  height: 14px;
+  border-radius: 2px;
+}
+
+/* =========================
+   DROPDOWN OPTIONS
+========================= */
+.select2-results__option {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+
+/* flag in dropdown */
+.select2-results__option img {
+  width: 20px;
+  height: 14px;
+  border-radius: 2px;
   display: inline-block;
-  vertical-align: middle;
 }
 
-/* Dropdown */
-.select2-dropdown {
-  border-radius: 6px;
-  overflow: hidden;
-  background-color: #fff;
-  color: #000;
-}
-
+/* hover color */
 .select2-results__option--highlighted {
   background-color: #3b82f6 !important;
   color: #fff !important;
 }
+
+/* =========================
+   SEARCH INPUT
+========================= */
+.select2-search--dropdown .select2-search__field {
+  padding: 6px;
+  border-radius: 4px;
+}
+
 
 /* =========================
   DARK MODE FOR SELECT2

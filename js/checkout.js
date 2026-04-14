@@ -1,3 +1,4 @@
+console.log("JS WORKS");
 function showMethod(method) {
 
     document.getElementById("vodafoneBox").style.display = "none";
@@ -18,20 +19,48 @@ function showMethod(method) {
 }
 
 // submit form
-document.getElementById("paymentForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
 
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const address = document.getElementById("address").value;
+    const form = document.getElementById("paymentForm");
 
-    if (!name || !phone || !address) {
-        alert("من فضلك املأ البيانات");
+    if (!form) {
+        console.log("FORM NOT FOUND ❌");
         return;
     }
 
-    document.getElementById("paymentForm").style.display = "none";
-    document.getElementById("successMsg").style.display = "block";
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
 
-    localStorage.removeItem("cart");
+        const formData = new FormData(form);
+
+        fetch("process.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.text())
+        .then(data => {
+
+    console.log("RESPONSE:", data);
+
+    if (data.trim() === "success") {
+
+        // إخفاء الفورم
+        form.style.display = "none";
+
+        // إظهار رسالة النجاح
+        const msg = document.getElementById("successMsg");
+        msg.style.display = "block";
+
+    } else {
+        alert("ERROR: " + data);
+    }
+
+})
+        .catch(err => {
+            console.error(err);
+            alert("Request failed");
+        });
+
+    });
+
 });
