@@ -19,43 +19,33 @@ function showMethod(method) {
 }
 
 // submit form
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-    const forms = document.querySelectorAll("form");
+    const form = e.target;
+    const formData = new FormData(form);
 
-    forms.forEach(form => {
+    fetch("process.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(data => {
 
-        form.addEventListener("submit", function (e) {
-            e.preventDefault();
+        console.log("RESPONSE:", data);
 
-            const formData = new FormData(form);
+        if (data.trim() === "success") {
 
-            fetch("process.php", {
-                method: "POST",
-                body: formData
-            })
-            .then(res => res.text())
-            .then(data => {
+            form.style.display = "none";
+            document.getElementById("successMsg").style.display = "block";
 
-                console.log("RESPONSE:", data);
+        } else {
+            alert("ERROR: " + data);
+        }
 
-                if (data.trim() === "success") {
-
-                    form.style.display = "none";
-                    document.getElementById("successMsg").style.display = "block";
-
-                } else {
-                    alert("ERROR: " + data);
-                }
-
-            })
-            .catch(err => {
-                console.error(err);
-                alert("Request failed");
-            });
-
-        });
-
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Request failed");
     });
-
 });
