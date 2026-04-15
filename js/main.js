@@ -112,7 +112,11 @@ $(document).ready(function () {
 document.getElementById("contactForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    let formData = new FormData(this);
+    console.log("Form submitted");
+
+    const form = document.getElementById("contactForm"); // 👈 أقوى تحديد
+
+    let formData = new FormData(form);
 
     fetch("contact_process.php", {
         method: "POST",
@@ -120,9 +124,17 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
     })
     .then(res => res.text())
     .then(data => {
-    console.log(data); // 👈 هنا المهم
-})
+        console.log("Response:", data);
+
+        if (data.trim() === "success") {
+
+            alert("تم الإرسال بنجاح ✅");
+
+            form.reset(); // 👈 هنا الحل النهائي
+
+        }
+    })
     .catch(err => {
-        alert("حصل خطأ ❌");
+        console.log("Error:", err);
     });
 });
