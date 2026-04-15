@@ -114,15 +114,14 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
 
     let formData = new FormData(this);
 
-    fetch("process.php", {
+    fetch("contact_process.php", {
         method: "POST",
         body: formData
     })
     .then(res => res.text())
     .then(data => {
-        alert("تم الإرسال بنجاح ✅");
-        this.reset();
-    })
+    console.log(data); // 👈 هنا المهم
+})
     .catch(err => {
         alert("حصل خطأ ❌");
     });
