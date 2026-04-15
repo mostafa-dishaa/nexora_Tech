@@ -6,26 +6,29 @@ ini_set('display_errors', 1);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $type = $_POST["form_type"] ?? "";
+    $type = trim(strtolower($_POST["form_type"] ?? ""));
 
     // ================= CONTACT =================
-    if ($type == "contact") {
+    if ($type === "contact") {
 
-        $name = $_POST["name"] ?? "";
-        $address = $_POST["address"] ?? "";
-        $city = $_POST["city"] ?? "";
-        $state = $_POST["state"] ?? "";
-        $zip = $_POST["zip"] ?? "";
-        $country = $_POST["country"] ?? "";
+    $name = $_POST["name"] ?? "";
+    $address = $_POST["address"] ?? "";
+    $city = $_POST["city"] ?? "";
+    $state = $_POST["state"] ?? "";
+    $zip = $_POST["zip"] ?? "";
+    $country = $_POST["country"] ?? "";
 
-        $sql = "INSERT INTO contact_form (name, address, city, state, zip, country)
-                VALUES ('$name', '$address', '$city', '$state', '$zip', '$country')";
+    $sql = "INSERT INTO contact_form (name, address, city, state, zip, country)
+            VALUES ('$name', '$address', '$city', '$state', '$zip', '$country')";
 
-        mysqli_query($conn, $sql);
-
+    if (mysqli_query($conn, $sql)) {
         echo "success";
-        exit();
+    } else {
+        echo "error";
     }
+
+    exit();
+}
 
     // ================= PAYMENT =================
     elseif ($type == "payment") {

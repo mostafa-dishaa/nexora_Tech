@@ -148,7 +148,7 @@
       Shipping Label Address Form
     </h2>
 
-    <form method="POST">
+    <form id="contactForm" method="POST">
 
       <input type="hidden" name="form_type" value="contact">
 

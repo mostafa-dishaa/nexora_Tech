@@ -108,3 +108,22 @@ $(document).ready(function () {
   });
 
 });
+// submit
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    fetch("process.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(data => {
+        alert("تم الإرسال بنجاح ✅");
+        this.reset();
+    })
+    .catch(err => {
+        alert("حصل خطأ ❌");
+    });
+});
