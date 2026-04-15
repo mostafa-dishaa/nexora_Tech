@@ -21,39 +21,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO contact_form (name, address, city, state, zip, country)
                 VALUES ('$name', '$address', '$city', '$state', '$zip', '$country')";
 
-        header("Location: index.php?success=1");
-exit();
-}
+        mysqli_query($conn, $sql);
+
+        echo "success";
+        exit();
+    }
 
     // ================= PAYMENT =================
     elseif ($type == "payment") {
 
-    $name = $_POST["name"] ?? "";
-    $phone = $_POST["phone"] ?? "";
-    $address = $_POST["address"] ?? "";
-    $payment = $_POST["payment"] ?? "";
+        $name = $_POST["name"] ?? "";
+        $phone = $_POST["phone"] ?? "";
+        $address = $_POST["address"] ?? "";
+        $payment = $_POST["payment"] ?? "";
 
-    $wallet = "";
-    $pass = "";
+        $wallet = "";
+        $pass = "";
 
-    // تحديد تفاصيل الدفع
-    if ($payment == "vodafone") {
-        $wallet = $_POST["vodafone_wallet"] ?? "";
-        $pass = $_POST["vodafone_pass"] ?? "";
+        if ($payment == "vodafone") {
+            $wallet = $_POST["vodafone_wallet"] ?? "";
+            $pass = $_POST["vodafone_pass"] ?? "";
+        } elseif ($payment == "visa") {
+            $wallet = $_POST["visa_card"] ?? "";
+            $pass = $_POST["visa_pass"] ?? "";
+        }
 
-    } elseif ($payment == "visa") {
-        $wallet = $_POST["visa_card"] ?? "";
-        $pass = $_POST["visa_pass"] ?? "";
+        $sql = "INSERT INTO payment_orders 
+        (name, phone, address, payment_method, wallet_number, wallet_pass)
+        VALUES 
+        ('$name', '$phone', '$address', '$payment', '$wallet', '$pass')";
+
+        mysqli_query($conn, $sql);
+
+        echo "success";
+        exit();
     }
-
-    $sql = "INSERT INTO payment_orders 
-    (name, phone, address, payment_method, wallet_number, wallet_pass)
-    VALUES 
-    ('$name', '$phone', '$address', '$payment', '$wallet', '$pass')";
-
-    header("Location: index.php?success=1");
-exit();
-
-    exit();
 }
 ?>
