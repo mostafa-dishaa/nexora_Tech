@@ -21,44 +21,39 @@ function showMethod(method) {
 // submit form
 document.addEventListener("DOMContentLoaded", function () {
 
-    const form = document.getElementById("paymentForm");
+    const forms = document.querySelectorAll("form");
 
-    if (!form) {
-        console.log("FORM NOT FOUND ❌");
-        return;
-    }
+    forms.forEach(form => {
 
-    form.addEventListener("submit", function(e) {
-        e.preventDefault();
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
 
-        const formData = new FormData(form);
+            const formData = new FormData(form);
 
-        fetch("process.php", {
-            method: "POST",
-            body: formData
-        })
-        .then(res => res.text())
-        .then(data => {
+            fetch("process.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.text())
+            .then(data => {
 
-    console.log("RESPONSE:", data);
+                console.log("RESPONSE:", data);
 
-    if (data.trim() === "success") {
+                if (data.trim() === "success") {
 
-        // إخفاء الفورم
-        form.style.display = "none";
+                    form.style.display = "none";
+                    document.getElementById("successMsg").style.display = "block";
 
-        // إظهار رسالة النجاح
-        const msg = document.getElementById("successMsg");
-        msg.style.display = "block";
+                } else {
+                    alert("ERROR: " + data);
+                }
 
-    } else {
-        alert("ERROR: " + data);
-    }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Request failed");
+            });
 
-})
-        .catch(err => {
-            console.error(err);
-            alert("Request failed");
         });
 
     });
