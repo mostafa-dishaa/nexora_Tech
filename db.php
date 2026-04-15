@@ -1,14 +1,12 @@
 <?php
+$host = "sql103.infinityfree.com";
+$user = "if0_41670035";
+$pass = "Mostafa132006";
+$db   = "if0_41670035_nexora";
 
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db   = "nexora_db";
+$conn = mysqli_connect($host, $user, $pass, $db);
 
-$conn = new mysqli($host, $user, $pass, $db);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
-
 ?>
