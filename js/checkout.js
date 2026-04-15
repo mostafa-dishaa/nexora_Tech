@@ -21,6 +21,7 @@ function showMethod(method) {
 // submit form
 document.addEventListener("submit", function (e) {
     e.preventDefault();
+    e.stopPropagation(); // مهم جدًا يقفل أي submit قديم
 
     const form = e.target;
     const formData = new FormData(form);
@@ -37,6 +38,8 @@ document.addEventListener("submit", function (e) {
         if (data.trim() === "success") {
 
             form.style.display = "none";
+
+            // مهم: يظهر الرسالة في نفس الصفحة
             document.getElementById("successMsg").style.display = "block";
 
         } else {
