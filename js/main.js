@@ -22,21 +22,25 @@ if (toggle) {
 // =======================
 // Back To Top
 // =======================
-const topBtn = document.createElement("button");
-topBtn.id = "topBtn";
-topBtn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
-document.body.appendChild(topBtn);
+document.addEventListener("DOMContentLoaded", function () {
 
-window.addEventListener("scroll", () => {
-  if (document.documentElement.scrollTop > 100) {
-    topBtn.style.display = "block";
-  } else {
-    topBtn.style.display = "none";
-  }
-});
+  const topBtn = document.createElement("button");
+  topBtn.id = "topBtn";
+  topBtn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+  document.body.appendChild(topBtn);
 
-topBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    if (document.documentElement.scrollTop > 100) {
+      topBtn.style.display = "block";
+    } else {
+      topBtn.style.display = "none";
+    }
+  });
+
+  topBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
 });
 
 
